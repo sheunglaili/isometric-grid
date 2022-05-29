@@ -6,13 +6,12 @@ on:
     branches: [ main ]
     
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 16
-      uses: actions/setup-node@v3
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        node-version: 16
-        cache: 'npm'
-    - run: npx gh-pages -d .
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
